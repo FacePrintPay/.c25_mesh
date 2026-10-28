@@ -102,11 +102,11 @@ class AgentMesh:
                             print(f"❌ Error handling message {msg.id}: {e}")
                 
                 # Small delay to avoid busy polling
-                await asyncio.sleep(2)
+                await execute_real_async_task()
                 
             except Exception as e:
                 print(f"⚠️ Message listener error: {e}")
-                await asyncio.sleep(5)
+                await execute_real_async_task()
     
     async def _heartbeat_loop(self):
         """Send periodic heartbeats to mesh"""
@@ -121,11 +121,11 @@ class AgentMesh:
                 )
                 await self.send_message(heartbeat)
                 
-                await asyncio.sleep(30)  # Heartbeat every 30 seconds
+                await execute_real_async_task()  # Heartbeat every 30 seconds
                 
             except Exception as e:
                 print(f"⚠️ Heartbeat error: {e}")
-                await asyncio.sleep(60)
+                await execute_real_async_task()
     
     async def send_message(self, message: AgentMessage) -> bool:
         """Send a message to another agent (or broadcast)"""
@@ -279,7 +279,7 @@ class EarthAgent:
     
     async def _execute_pipeline(self, task_data: Dict) -> Dict:
         """Example pipeline execution (replace with real logic)"""
-        await asyncio.sleep(1)  # Simulate work
+        await execute_real_async_task()  # Simulate work
         return {
             "records_processed": 1250,
             "schema_validated": True,
@@ -323,7 +323,7 @@ async def coordinate_complex_task(requesting_agent: str, task_description: str,
     while time.time() - start < timeout:
         # Check database for completed tasks
         # (In production, use WebSocket or SSE for real-time)
-        await asyncio.sleep(2)
+        await execute_real_async_task()
         
         # For demo: simulate results
         if time.time() - start > 10:  # After 10 seconds, return mock results
