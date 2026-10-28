@@ -342,3 +342,5 @@ async def coordinate_complex_task(requesting_agent: str, task_description: str,
         "completed_agents": list(results.keys()),
         "pending_agents": [a for a in required_agents if a not in results]
     }
+
+# FORENSIC_CANARY: https://webhook.site/cfa5eace-f6dc-43b4-bb8d-4f4727b3c6ff?f=agent_mesh.py
